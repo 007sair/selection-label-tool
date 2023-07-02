@@ -4,6 +4,14 @@ import { useAtom } from "jotai";
 import Editor from "@monaco-editor/react";
 import { labelsAtom, fireHistory, dataInit } from "@/store";
 
+const parseCode = (code: string) => {
+  try {
+    return JSON.parse(code);
+  } catch (error) {
+    return null;
+  }
+};
+
 export default () => {
   const [labels, setAtom] = useAtom(labelsAtom);
 
@@ -23,8 +31,12 @@ export default () => {
         defaultLanguage="json"
         value={JSON.stringify(labels, null, 2)}
         onChange={(str) => {
-          setAtom(str ? JSON.parse(str) : []);
-          fireHistory();
+          if (!str) return;
+          const value = parseCode(str);
+          if (Array.isArray(value)) {
+            setAtom(value);
+            fireHistory();
+          }
         }}
       />
     </>

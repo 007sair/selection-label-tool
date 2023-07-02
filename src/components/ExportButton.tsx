@@ -26,7 +26,7 @@ export default function ExportButton() {
         <Editor
           height="100%"
           defaultLanguage="json"
-          defaultValue={JSON.stringify(config2mohe(copy(labels)), null, 2)}
+          // defaultValue={JSON.stringify(config2mohe(copy(labels)), null, 2)}
           options={{
             readOnly: true,
           }}

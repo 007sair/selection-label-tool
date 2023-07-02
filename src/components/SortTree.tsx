@@ -31,7 +31,7 @@ const insertNode = (
 };
 
 export default function SortTree() {
-  const [lables, setLabels] = useAtom(labelsAtom);
+  const [labels, setLabels] = useAtom(labelsAtom);
   const [gData, setGData] = useState<DataNode[]>([]);
 
   const onDrop: TreeProps["onDrop"] = (info) => {
@@ -97,8 +97,7 @@ export default function SortTree() {
       }
     }
     setGData(data);
-
-    setLabels(tree2config(gData as any));
+    setLabels(tree2config(data as any));
     fireHistory();
   };
 
@@ -116,14 +115,13 @@ export default function SortTree() {
   };
 
   useEffect(() => {
-    if (lables) {
-      try {
-        setGData(config2tree(lables));
-      } catch (error) {
-        console.log(error);
-      }
+    if (!Array.isArray(labels) || !labels) return;
+    try {
+      setGData(config2tree(labels));
+    } catch (error) {
+      console.log(error);
     }
-  }, [lables]);
+  }, [labels]);
 
   return (
     <div style={{ padding: 10, flex: 1 }}>
@@ -131,9 +129,10 @@ export default function SortTree() {
         treeData={gData}
         draggable
         blockNode
+        showLine
         selectable={false}
         onDrop={onDrop}
-        titleRender={renderNode}
+        titleRender={renderNode as any}
       />
     </div>
   );

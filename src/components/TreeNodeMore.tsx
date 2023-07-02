@@ -1,7 +1,7 @@
-import { Button, Form, Input, Modal, Dropdown, MenuProps } from "antd";
+import { Button, Form, Input, Modal, Dropdown, MenuProps, Switch } from "antd";
 import type { DataNode } from "antd/es/tree";
 import styled from "styled-components";
-import { EllipsisOutlined } from "@ant-design/icons";
+import { MoreOutlined } from "@ant-design/icons";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
@@ -31,13 +31,10 @@ type Props = {
   onInsert?: (node: Node, asChild?: boolean) => void;
 };
 
-const ItemWithModal = ({
-  onInsert,
-  asChild,
-}: Props & { asChild?: boolean }) => {
+const ItemWithModal = ({ onInsert }: Props) => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  const title = asChild ? "添加子分组" : "添加分组";
+  const title = "添加分组";
 
   return (
     <>
@@ -47,13 +44,16 @@ const ItemWithModal = ({
         title={title}
         onCancel={() => setOpen(false)}
         onOk={() => form.submit()}
+        bodyStyle={{
+          paddingTop: 20,
+        }}
       >
         <Form
           form={form}
           onFinish={(values) => {
             onInsert?.(
               { ...values, __type: "group", key: nanoid(), children: [] },
-              asChild
+              values.child
             );
             form.resetFields();
             setOpen(false);
@@ -61,6 +61,13 @@ const ItemWithModal = ({
         >
           <Form.Item label="分组名称" name="title">
             <Input />
+          </Form.Item>
+          <Form.Item
+            label="添加子项"
+            name="child"
+            tooltip="开启后会将创建的分组添加为当前节点的子项"
+          >
+            <Switch />
           </Form.Item>
         </Form>
       </Modal>
@@ -78,7 +85,7 @@ export default function TreeNodeMore(props: Props) {
     },
     {
       key: "2",
-      label: <ItemWithModal {...props} asChild />,
+      label: <ItemWithModal {...props} />,
     },
   ];
 
@@ -92,7 +99,7 @@ export default function TreeNodeMore(props: Props) {
           overlayStyle={{ minWidth: 120 }}
         >
           {isGroup ? (
-            <Button type="text" icon={<EllipsisOutlined />} size="small" />
+            <Button type="text" icon={<MoreOutlined />} size="small" />
           ) : (
             <div></div>
           )}

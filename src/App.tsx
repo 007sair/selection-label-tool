@@ -35,7 +35,7 @@ function App() {
         <Col span={12}>
           <Card
             size="small"
-            title="魔盒配置"
+            title="标签配置"
             bordered={false}
             style={{ height: "100%" }}
           >

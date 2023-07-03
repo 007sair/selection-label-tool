@@ -4,8 +4,10 @@ import { atomWithImmer } from "jotai-immer";
 import { atom, createStore } from "jotai/vanilla";
 import mock from "@/mock.json";
 
+export const LabelStorageName = "label-resort-tool";
+
 export const labelsAtom = atomWithStorage<Array<Label | LabelGroup>>(
-  "label-resort-tool",
+  LabelStorageName,
   mock // mock data for test
 );
 

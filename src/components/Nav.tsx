@@ -7,11 +7,16 @@ import {
   Row,
   Col,
   theme,
+  message,
 } from "antd";
 import ExportButton from "./ExportButton";
 import Manual from "./Manual";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import {
+  QuestionCircleOutlined,
+  ExclamationCircleFilled,
+} from "@ant-design/icons";
 import Undo from "./Undo";
+import { LabelStorageName } from "@/store";
 
 export default function Nav() {
   const { token } = theme.useToken();
@@ -30,7 +35,7 @@ export default function Nav() {
         <Col span={8}>
           <Space>
             <Typography.Title style={{ margin: "0 50px 0 0" }} level={4}>
-              选品标签排序工具
+              标签排序工具
             </Typography.Title>
           </Space>
         </Col>
@@ -39,6 +44,28 @@ export default function Nav() {
         </Col>
         <Col span={8} style={{ textAlign: "right" }}>
           <Space>
+            <Tooltip title="清除本地存储">
+              <Button
+                type="text"
+                onClick={() => {
+                  Modal.confirm({
+                    title: "确认需要删除本地存储数据吗?",
+                    icon: <ExclamationCircleFilled />,
+                    content: "如果删除，修改的数据都将被清除，请先备份数据。",
+                    okText: "确定",
+                    cancelText: "取消",
+                    onOk() {
+                      localStorage.removeItem(LabelStorageName);
+                      if (!localStorage.getItem(LabelStorageName)) {
+                        message.success("清除成功");
+                      }
+                    },
+                  });
+                }}
+              >
+                Clear
+              </Button>
+            </Tooltip>
             <ExportButton></ExportButton>
             <Tooltip title="使用说明">
               <Button

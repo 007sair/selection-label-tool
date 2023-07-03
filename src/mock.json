@@ -10,7 +10,7 @@
           {
             "code": "pop-label-1",
             "defaultValue": "{}",
-            "name": "爆品标签1",
+            "name": "mock-标签1",
             "type": 5,
             "config": "{}",
             "isHot": true
@@ -19,7 +19,7 @@
             "code": "pop-label-2",
             "defaultValue": "{}",
             "hint": "label-2-hint",
-            "name": "爆品标签2",
+            "name": "mock-标签2",
             "type": 50,
             "config": "{}",
             "isHot": true
@@ -28,7 +28,7 @@
             "code": "pop-label-3",
             "defaultValue": "[]",
             "hint": "label-3-hint",
-            "name": "爆品标签3",
+            "name": "mock-标签3",
             "type": 6,
             "config": "[]",
             "isHot": true
@@ -39,7 +39,7 @@
         "groupName": "mock分组1-2",
         "labels": [
           {
-            "code": "xinpin-label-1",
+            "code": "xxx-label-1",
             "defaultValue": "{}",
             "hint": "新品标签1的描述",
             "name": "新品标签1",
@@ -48,7 +48,7 @@
             "isHot": true
           },
           {
-            "code": "skuIsNewMark",
+            "code": "xxx-label-2",
             "defaultValue": "{}",
             "hint": "新品标签2的文字描述",
             "name": "新品标签2",
@@ -64,14 +64,14 @@
     "groupName": "mock分组2",
     "labels": [
       {
-        "code": "label-department",
+        "code": "xxx-department",
         "name": "leble-2-1",
         "type": 0,
         "version": "2.0",
         "config": "{}"
       },
       {
-        "code": "label-cate",
+        "code": "xxx-cate",
         "supplyType": 47,
         "name": "leble-2-2",
         "type": 1,
@@ -79,8 +79,8 @@
         "config": "{}"
       },
       {
-        "code": "leble-2-3",
-        "name": "leble-2-3",
+        "code": "xxx-2-3",
+        "name": "xxx-2-3",
         "type": 7,
         "config": "[]"
       }
@@ -90,14 +90,14 @@
     "groupName": "mock分组3",
     "labels": [
       {
-        "code": "leble-3-1",
+        "code": "xxx-3-1",
         "hint": "mock数据1的描述",
         "name": "leble-3-1",
         "type": 8,
         "config": "{}"
       },
       {
-        "code": "leble-3-2",
+        "code": "xxx-3-2",
         "hint": "mock数据2的描述",
         "name": "leble-3-2",
         "type": 50,
